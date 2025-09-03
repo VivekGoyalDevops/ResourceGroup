@@ -5,12 +5,12 @@ terraform {
       version = "4.29.0"
     }
   }
-  # backend "azurerm" {
-  #   resource_group_name   = "vivek-rg"
-  #   storage_account_name  = "vivekstorageacct"
-  #   container_name        = "vivekstracccontainer"
-  #   key                   = "terraform.tfstate"
-  # }
+  backend "azurerm" {
+    resource_group_name   = "vivek-rg"
+    storage_account_name  = "vivekstracc"
+    container_name        = "vivekstracccontainer"
+    key                   = "terraform.tfstate"
+  }
 }
 provider "azurerm" {
   features {}
