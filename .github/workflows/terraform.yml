@@ -1,12 +1,15 @@
 name: "create-azure-rg"
 
-on: workflow_dispatch
+on: 
+  push:
+    branches:
+      - main
 
 jobs:
-  create-resource-group:
-    name: creating azure resource group
-    # permissions: write-all
+  terraformInIt:
+    name: terraform init
     runs-on: vivek-runner
     steps: 
       - name: vivek rocks
+        run: echo vivek goyal
     
