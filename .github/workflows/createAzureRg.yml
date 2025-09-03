@@ -5,7 +5,7 @@ permissions:
       id-token: write 
       contents: read 
 jobs:
-  terraform_job:
+  azure_rg_terra_job:
     name: checkout
     runs-on: vivek-runner
     steps:
@@ -23,14 +23,23 @@ jobs:
           client-id: 64060588-2a5a-4f40-a63b-c232de8f5cde
           tenant-id: 749c1dd0-8da4-446d-987c-6deb1b6cbab9
           subscription-id: 879e262b-becf-4bea-a163-835b023ba8e0
+
+      - name: terraform-fmt
+        id: fmt
+        run: terraform fmt -check
+        continue-on-error: true
+        working-directory: Environment/Dev
                 
-      # - name: Terraform init azurerm backend
-      #   uses: ahmedig/terraform-azurerm-backend@v4
-      #   with:
-      #     azure_credentials: 
-      #     resource_group_name: 
-      #     container_name: 
-      #     storage_account_name: 
-      #     file_name: 
-      #     subscription_id: 
-      #     tf_working_directory: 
+      - name: Terraform init
+        id: init
+        run: terraform init -input=false
+        working-directory: Environment/Dev
+
+      - name: terraform validate
+        id: validate
+        run: terraform validate -no-color
+
+      - name: terraform plan
+        id: plan
+        run: terraform plan -no-color -input=false
+        continue-on-error: true
