@@ -1,4 +1,4 @@
-name: "create-azure-rg"
+name: just for practice
 
 on: 
   push:
