@@ -21,13 +21,13 @@ jobs:
           tenant-id: 749c1dd0-8da4-446d-987c-6deb1b6cbab9
           subscription-id: 879e262b-becf-4bea-a163-835b023ba8e0
                 
-      - name: Terraform init azurerm backend
-        uses: ahmedig/terraform-azurerm-backend@v4
-        with:
-          azure_credentials: 
-          resource_group_name: 
-          container_name: 
-          storage_account_name: 
-          file_name: 
-          subscription_id: 
-          tf_working_directory: 
+      # - name: Terraform init azurerm backend
+      #   uses: ahmedig/terraform-azurerm-backend@v4
+      #   with:
+      #     azure_credentials: 
+      #     resource_group_name: 
+      #     container_name: 
+      #     storage_account_name: 
+      #     file_name: 
+      #     subscription_id: 
+      #     tf_working_directory: 
