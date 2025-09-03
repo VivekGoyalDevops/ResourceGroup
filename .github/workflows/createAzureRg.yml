@@ -1,0 +1,11 @@
+name: create azure rg
+on:
+  workflow_dispatch
+jobs:
+  terraform_job:
+    name: checkout
+    runs-on: vivek-runner
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5.0.0
+        
