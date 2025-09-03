@@ -12,4 +12,8 @@ jobs:
     steps: 
       - name: vivek rocks
         run: echo vivek goyal
+      - name: tondu maharaj
+        run: tonduMaharajRocks
+      - name: rondu maharaj
+        run: ronduMaharajRocks
     
