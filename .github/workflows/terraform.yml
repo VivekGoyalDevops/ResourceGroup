@@ -3,7 +3,7 @@ name: just for practice
 on: 
   push:
     branches:
-      - main
+      - feature/*
 
 jobs:
   terraformInIt:
