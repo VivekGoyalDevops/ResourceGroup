@@ -6,7 +6,7 @@ jobs:
   create-resource-group:
     name: creating azure resource group
     # permissions: write-all
-    runs-on: self-hosted
+    runs-on: vivek-runner
     steps: 
       - name: vivek rocks
     
