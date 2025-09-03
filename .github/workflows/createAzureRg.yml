@@ -33,7 +33,7 @@ jobs:
       - name: Terraform init
         id: init
         run: terraform init -input=false
-        working-directory: Environment/Dev
+        working-directory: ResourceGroup/ResourceGroup/Environment/Dev
 
       - name: terraform validate
         id: validate
