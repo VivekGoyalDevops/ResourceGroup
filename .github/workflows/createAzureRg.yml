@@ -1,6 +1,9 @@
 name: create azure rg
 on:
   workflow_dispatch
+permissions:
+      id-token: write 
+      contents: read 
 jobs:
   terraform_job:
     name: checkout
