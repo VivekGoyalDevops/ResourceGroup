@@ -6,7 +6,7 @@ permissions:
       contents: read 
 jobs:
   azure_rg_terra_job:
-    name: checkout
+    name: azure-rg-create
     runs-on: vivek-runner
     steps:
       - name: Checkout
