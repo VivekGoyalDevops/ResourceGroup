@@ -35,8 +35,15 @@ jobs:
         run: terraform init -input=false
         working-directory: Environment/Dev
       
-      - name: Print working directory (Linux/Mac)
-        run: pwd
+      - name: Print working directory
+        run: |
+          echo "Current directory is:"
+          Get-Location
+        shell: pwsh
+
+      - name: List files
+        run: dir
+        shell: pwsh
       # - name: Terraform Validate
       #   id: validate
       #   run: terraform validate -no-color
