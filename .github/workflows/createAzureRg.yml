@@ -11,11 +11,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5.0.0
-        
-      - name: Install Terraform
-        uses: little-core-labs/install-terraform@v2.0.0
-        with:
-          version: 1.13.0
 
       - name: Azure Login
         uses: Azure/login@v2.3.0
@@ -23,33 +18,32 @@ jobs:
           client-id: 64060588-2a5a-4f40-a63b-c232de8f5cde
           tenant-id: 749c1dd0-8da4-446d-987c-6deb1b6cbab9
           subscription-id: 879e262b-becf-4bea-a163-835b023ba8e0
+        
+      - name: Install Terraform
+        uses: little-core-labs/install-terraform@v2.0.0
+        with:
+          version: 1.13.0
 
-      - name: Terraform fmt
-        id: fmt
-        run: terraform fmt -check
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -no-color -input=false
         continue-on-error: true
         working-directory: Environment/Dev
 
-      - name: Terraform Init
-        id: init
-        run: terraform init -input=false
-        working-directory: Environment/Dev
-      
-      - name: Print working directory
-        run: |
-          echo "Current directory is:"
-          Get-Location
-        shell: pwsh
+      # - name: Terraform fmt
+      #   id: fmt
+      #   run: terraform fmt -check
+      #   continue-on-error: true
+      #   working-directory: Environment/Dev
 
-      - name: List files
-        run: dir
-        shell: pwsh
+      # - name: Terraform Init
+      #   id: init
+      #   run: terraform init -input=false
+      #   working-directory: Environment/Dev
+      
       # - name: Terraform Validate
       #   id: validate
       #   run: terraform validate -no-color
       #   working-directory: ./Environment/Dev
       
-      # - name: Terraform Plan
-      #   id: plan
-      #   run: terraform plan -no-color -input=false
-      #   continue-on-error: true
+
