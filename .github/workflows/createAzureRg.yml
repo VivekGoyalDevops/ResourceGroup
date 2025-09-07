@@ -5,41 +5,50 @@ permissions:
       id-token: write 
       contents: read 
 jobs:
-  azure_rg_terra_job:
+  terraform-Job:
     name: azure-rg-create
     runs-on: vivek-runner
     steps:
       - name: Checkout
         uses: actions/checkout@v5.0.0
 
-      - name: Azure Login
-        uses: Azure/login@v2.3.0
-        with:
-          client-id: 64060588-2a5a-4f40-a63b-c232de8f5cde
-          tenant-id: 749c1dd0-8da4-446d-987c-6deb1b6cbab9
-          subscription-id: 879e262b-becf-4bea-a163-835b023ba8e0
-        
       - name: Install Terraform
         uses: little-core-labs/install-terraform@v2.0.0
         with:
-          version: 1.13.0
+          version: 1.10.5
 
-      # - name: Terraform Plan
-      #   id: plan
-      #   run: terraform plan -no-color -input=false
-      #   continue-on-error: true
-      #   working-directory: Environment/Dev
+      - name: Azure Login
+        uses: Azure/login@v2.3.0
+        with:
+          client-id: c14045f6-2258-4728-bcee-9337b5e6da08
+          tenant-id: 749c1dd0-8da4-446d-987c-6deb1b6cbab9
+          subscription-id: 879e262b-becf-4bea-a163-835b023ba8e0
 
-      # - name: Terraform fmt
-      #   id: fmt
-      #   run: terraform fmt -check
-      #   continue-on-error: true
-      #   working-directory: Environment/Dev
-
+      - name: Terraform fmt
+        id: fmt
+        run: terraform fmt -check
+        continue-on-error: true
+        working-directory: Environment/Prod
+        
       - name: Terraform Init
         id: init
         run: terraform init -input=false
-        working-directory: Environment/Dev
+        working-directory: Environment/Prod
+
+      - name: Terraform validate
+        id: validate
+        run: terraform validate -no-color
+        working-directory: Environment/Prod
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -no-color -input=false
+        continue-on-error: true
+        working-directory: Environment/Prod
+
+
+
+
       
       # - name: Terraform Validate
       #   id: validate
