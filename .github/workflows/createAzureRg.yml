@@ -5,8 +5,7 @@ permissions:
       id-token: write 
       contents: read 
 jobs:
-  terraform-Job:
-    # name: azure-rg-create
+  terraform-init-plan:
     # environment: Dev
     runs-on: vivek-runner
     steps:
@@ -47,4 +46,26 @@ jobs:
         continue-on-error: true
         working-directory: Environment/Dev
 
-      
+  terraform-init-apply:
+    runs-on: vivek-runner
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5.0.0
+
+      - name: Azure Login
+        uses: Azure/login@v2.3.0
+        with:
+          client-id: c14045f6-2258-4728-bcee-9337b5e6da08
+          tenant-id: 749c1dd0-8da4-446d-987c-6deb1b6cbab9
+          subscription-id: 879e262b-becf-4bea-a163-835b023ba8e0
+
+      - name: Terraform Init
+        id: init
+        run: terraform init -input=false
+        working-directory: Environment/Dev
+
+      - name: Terraform apply
+        id: apply
+        run: terraform apply --auto-approve
+        continue-on-error: true
+        working-directory: Environment/Dev
