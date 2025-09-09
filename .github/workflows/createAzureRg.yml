@@ -6,7 +6,6 @@ permissions:
       contents: read 
 jobs:
   terraform-Job:
-    environment: Dev
     name: azure-rg-create
     runs-on: vivek-runner
     steps:
